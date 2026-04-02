@@ -3,6 +3,7 @@
 module Turndown
   require 'turndown/configuration'
   require 'turndown/support/list_parser'
+  require 'turndown/maintenance_state'
   require 'turndown/maintenance_file'
   require 'turndown/maintenance_page'
   require 'turndown/request'
