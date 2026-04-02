@@ -38,10 +38,9 @@ module Turndown
       end
 
       def headers(retry_after = nil)
-        headers = {'Content-Type' => media_types.first, 'Content-Length' => length}
-        # Include the Retry-After header unless it wasn't specified
-        headers['Retry-After'] = retry_after.to_s unless retry_after.nil?
-        headers
+        hdrs = { 'content-type' => media_types.first, 'content-length' => length }
+        hdrs['retry-after'] = retry_after.to_s unless retry_after.nil?
+        hdrs
       end
 
       def length
