@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'yaml'
 require 'fileutils'
 
@@ -109,7 +111,7 @@ module Turndown
     end
 
     def import_yaml
-      import YAML::load(File.open(path)) || {}
+      import(YAML.safe_load(File.read(path), permitted_classes: [], symbolize_names: false) || {})
     end
 
     def self.named_paths

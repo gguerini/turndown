@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Turndown
   require 'turndown/configuration'
   require 'turndown/maintenance_file'
