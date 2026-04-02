@@ -4,4 +4,7 @@
 *~
 *.gem
 Gemfile.lock
-coverage
+coverage/
+tmp/
+.byebug_history
+.rubocop-*.yml
