@@ -83,23 +83,12 @@ module Turndown
       @reason = reason.to_s
     end
 
-    # Splits strings on commas for easier importing of environment variables
     def allowed_paths=(paths)
-      if paths.is_a? String
-        # Grab everything between commas that aren't escaped with a backslash
-        paths = paths.to_s.split(/(?<!\\),\ ?/).map do |path|
-          path.strip.gsub('\,', ',') # remove the escape characters
-        end
-      end
-
-      @allowed_paths = paths
+      @allowed_paths = paths.is_a?(String) ? Support::ListParser.call(paths) : paths
     end
 
-    # Splits strings on commas for easier importing of environment variables
     def allowed_ips=(ips)
-      ips = ips.to_s.split(',') if ips.is_a? String
-
-      @allowed_ips = ips
+      @allowed_ips = ips.is_a?(String) ? Support::ListParser.call(ips) : ips
     end
 
     def response_code=(code)
