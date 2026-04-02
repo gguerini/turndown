@@ -7,6 +7,8 @@ module Turndown
   require 'turndown/maintenance_file'
   require 'turndown/maintenance_page'
   require 'turndown/request'
+  require 'turndown/provider/env'
+  require 'turndown/provider/file'
   require 'turndown/engine' if defined? Rails
 
   def self.configure

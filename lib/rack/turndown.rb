@@ -4,7 +4,7 @@ require 'rack'
 require 'turndown'
 
 class Rack::Turndown
-  def initialize(app, config={})
+  def initialize(app, config = {})
     @app = app
 
     Turndown.config.update config
@@ -15,16 +15,29 @@ class Rack::Turndown
   end
 
   def call(env)
-    request = Turndown::Request.new(env)
-    settings = Turndown::MaintenanceFile.find
+    state = active_maintenance_state
 
-    if settings && !request.allowed?(settings)
-      page_class = Turndown::MaintenancePage.best_for(env)
-      page = page_class.new(settings.reason, env: env)
-
-      page.rack_response(settings.response_code, settings.retry_after)
-    else
+    if state.nil?
       @app.call(env)
+    else
+      request = Turndown::Request.new(env)
+      if request.allowed?(state)
+        @app.call(env)
+      else
+        page_class = Turndown::MaintenancePage.best_for(env)
+        page = page_class.new(state.reason, env: env)
+        page.rack_response(state.response_code, state.retry_after)
+      end
     end
+  end
+
+  private
+
+  def active_maintenance_state
+    Turndown.config.providers.each do |provider_class|
+      state = provider_class.new.active_state
+      return state unless state.nil?
+    end
+    nil
   end
 end
