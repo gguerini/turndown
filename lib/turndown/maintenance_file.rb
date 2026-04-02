@@ -1,7 +1,7 @@
 require 'yaml'
 require 'fileutils'
 
-module Turnout
+module Turndown
   class MaintenanceFile
     attr_reader :path
 
@@ -10,11 +10,11 @@ module Turnout
 
     def initialize(path)
       @path = path
-      @reason = Turnout.config.default_reason
-      @allowed_paths = Turnout.config.default_allowed_paths
-      @allowed_ips = Turnout.config.default_allowed_ips
-      @response_code = Turnout.config.default_response_code
-      @retry_after = Turnout.config.default_retry_after
+      @reason = Turndown.config.default_reason
+      @allowed_paths = Turndown.config.default_allowed_paths
+      @allowed_ips = Turndown.config.default_allowed_ips
+      @response_code = Turndown.config.default_response_code
+      @retry_after = Turndown.config.default_retry_after
 
       import_yaml if exists?
     end
@@ -113,7 +113,7 @@ module Turnout
     end
 
     def self.named_paths
-      Turnout.config.named_maintenance_file_paths
+      Turndown.config.named_maintenance_file_paths
     end
   end
 end

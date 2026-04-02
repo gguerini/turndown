@@ -1,6 +1,6 @@
 require 'ipaddr'
 
-module Turnout
+module Turndown
   class Request
     def initialize(env)
       @rack_request = Rack::Request.new(env)

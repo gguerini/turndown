@@ -1,6 +1,6 @@
 require 'json'
 
-module Turnout
+module Turndown
   module MaintenancePage
     class JSON < Base
       def reason

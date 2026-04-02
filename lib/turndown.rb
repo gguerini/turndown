@@ -1,9 +1,9 @@
-module Turnout
-  require 'turnout/configuration'
-  require 'turnout/maintenance_file'
-  require 'turnout/maintenance_page'
-  require 'turnout/request'
-  require 'turnout/engine' if defined? Rails
+module Turndown
+  require 'turndown/configuration'
+  require 'turndown/maintenance_file'
+  require 'turndown/maintenance_page'
+  require 'turndown/request'
+  require 'turndown/engine' if defined? Rails
 
   def self.configure
     yield config

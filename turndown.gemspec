@@ -1,18 +1,18 @@
 lib = File.expand_path('../lib/', __FILE__)
 $:.unshift lib unless $:.include?(lib)
 
-require 'turnout/version'
+require 'turndown/version'
 
 spec = Gem::Specification.new do |s|
-  s.name = 'turnout'
-  s.version = Turnout::VERSION
+  s.name = 'turndown'
+  s.version = Turndown::VERSION
   s.summary = 'A Rack based maintenance mode plugin for Rails'
-  s.description = 'Turnout makes it easy to put your Rails application into maintenance mode'
+  s.description = 'Turndown makes it easy to put your Rails application into maintenance mode'
   s.files = Dir['README.*', 'MIT-LICENSE', 'rails/*.rb', 'config/**/*.rb', 'lib/**/*.rb', 'lib/tasks/*.rake', 'public/*']
   s.require_path = 'lib'
   s.author = 'Adam Crownoble'
   s.email = 'adam@codenoble.com'
-  s.homepage = 'https://github.com/biola/turnout'
+  s.homepage = 'https://github.com/biola/turndown'
   s.license = 'MIT'
   s.add_dependency('tilt','>= 1.4', '< 3')
   s.add_dependency('rack', '>= 1.3', '< 3')
